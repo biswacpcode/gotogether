@@ -2,32 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* Updated with purple primary color scheme */
+    --background: 0 0% 100%;
+    --foreground: 250 10% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 250 10% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 10% 10%;
+    
+    --primary: 262 83% 66%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 260 15% 54%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 260 20% 96%;
+    --muted-foreground: 260 10% 50%;
+    
+    --accent: 262 59% 95%;
+    --accent-foreground: 262 50% 50%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 262 83% 66%;
+    
+    --radius: 0.75rem;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 262 83% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 260 20% 96%;
+    --sidebar-accent-foreground: 250 10% 10%;
+    --sidebar-border: 260 20% 90%;
+    --sidebar-ring: 262 83% 66%;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 95%;
+    
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 262 83% 66%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 260 15% 54%;
+    --secondary-foreground: 0 0% 95%;
+    
+    --muted: 240 6% 15%;
+    --muted-foreground: 240 5% 65%;
+    
+    --accent: 240 6% 15%;
+    --accent-foreground: 0 0% 95%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 262 83% 66%;
+    
+    --sidebar-background: 240 10% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 262 83% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 6% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 262 83% 66%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Glass morphism styles */
+  .glass {
+    @apply bg-white/80 dark:bg-black/50 backdrop-blur-md border border-white/20 dark:border-white/10;
   }
+  
+  .glass-card {
+    @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-md;
+  }
+  
+  /* Animated components */
+  .animate-enter {
+    @apply animate-fade-in;
+  }
+  
+  .animate-hover {
+    @apply transition-all duration-200 hover:scale-102;
+  }
+  
+  /* Custom form elements */
+  .form-group {
+    @apply flex flex-col gap-2 mb-4;
+  }
+}
+
+@keyframes borderPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-borderPulse {
+  background-size: 200% 200%;
+  animation: borderPulse 4s ease infinite;
 }
