@@ -42,7 +42,7 @@ const RideMatchDialog = ({ open, onOpenChange, rideId, email, date, time, direct
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`glass sm:max-w-md ${isMobile ? 'w-[100vw] h-[80vh] p-4' : 'max-h-[80vh]'}`}>
+      <DialogContent className={`glass sm:max-w-md ${isMobile ? 'w-[100vw] h-[80vh] p-4' : 'max-h-[80vh]'} overflow-hidden`}>
         <DialogHeader>
           <DialogTitle className="text-xl font-bold flex items-center justify-between">
             <span>Potential Matches</span>
